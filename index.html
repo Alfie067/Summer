@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>For My Love</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(to bottom right, #a2d5f2, #0b3d91);
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 100vh;
+        text-align: center;
+        overflow-x: hidden;
+        padding: 20px;
+        position: relative;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+        text-shadow: 2px 2px 8px #000;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          text-shadow: 2px 2px 8px #000;
+        }
+        50% {
+          text-shadow: 2px 2px 20px #fff;
+        }
+      }
+
+      .main-message {
+        font-size: 1rem;
+        background-color: rgba(255, 255, 255, 0.2);
+        padding: 15px;
+        border-radius: 15px;
+        margin-bottom: 20px;
+        max-width: 600px;
+        text-align: center;
+        line-height: 1.5;
+        box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.5);
+        animation: fadeIn 3s ease-in-out;
+      }
+
+      .btn {
+        background: #ffffff;
+        color: #0b3d91;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 10px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.3s;
+        margin-bottom: 25px;
+      }
+
+      .btn:hover {
+        background: #a2d5f2;
+        color: #fff;
+      }
+
+      /* Popup Modal */
+      .popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        display: none;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .popup-content {
+        background: white;
+        color: #0b3d91;
+        padding: 20px;
+        border-radius: 12px;
+        text-align: center;
+        max-width: 400px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+        animation: fadeIn 0.5s ease-in-out;
+      }
+
+      .close-btn {
+        margin-top: 15px;
+        background: #0b3d91;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .sparkle {
+        position: absolute;
+        background: white;
+        border-radius: 50%;
+        animation: floatUp linear infinite;
+      }
+
+      @keyframes floatUp {
+        0% {
+          transform: translateY(100vh) scale(0);
+          opacity: 0;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-50px) scale(1);
+          opacity: 0;
+        }
+      }
+
+      /* Countdown style */
+      .countup {
+        font-size: 1.2rem;
+        margin: 15px 0 25px 0;
+        padding: 10px 20px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 12px;
+        box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.5);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>💙 Summer Rogers 💙</h1>
+
+    <!-- Count Up Timer -->
+    <div class="countup">
+      Time since 6:32 today: <span id="timer">00:00:00</span>
+    </div>
+
+    <!-- Center Buttons -->
+    <button
+      class="btn"
+      onclick="showPopup('I love you so much, Summer 💙 Forever yours, Alfie.')"
+    >
+      Open My Love Message
+    </button>
+
+    <button
+      class="btn"
+      onclick="showPopup('💙 I Promise To Always Be There For You. To Look After You. To Cherish Every Moment!💙')"
+    >
+      Summers Promise
+    </button>
+
+    <button
+      class="btn"
+      onclick="showPopup('💙 Dear Summer, i promise to always be here for you, when ever you need it. if i have to spend my nights round yours just making sure youre safe thats all that matters to me. i love you summer, Love Alfie.💙')"
+    >
+      Alfie's Promise
+    </button>
+
+    <div class="main-message">
+      Every time I see you, my heart stops, everything around me freezes. I now
+      come to realise I want you even more, every second I spend with you I get
+      deeply more in love. Words can't describe how much my feelings have grown
+      towards you and my heart is at its max. I love you so much Summer! The One
+      & Only Alfie.
+    </div>
+    <div class="main-message">
+      You are my light in the darkest nights, my inspiration, my joy. My love
+      for you grows stronger every single day.
+    </div>
+    <div class="main-message">
+      I cherish every laugh, every hug, every glance. Life with you feels like a
+      dream I never want to wake up from.
+    </div>
+    <div class="main-message">
+      No words can capture how special you are to me. Summer, you are my heart,
+      my soul, my everything.
+    </div>
+    <div class="main-message">Forever and always, I am yours.</div>
+    <div class="main-message">
+      My love for you knows no bounds, no limits, only endless devotion.
+    </div>
+
+    <!-- Popup Modal -->
+    <div class="popup" id="popup">
+      <div class="popup-content">
+        <p id="popup-message"></p>
+        <button class="close-btn" onclick="closePopup()">Close</button>
+      </div>
+    </div>
+
+    <script>
+      // Sparkles
+      for (let i = 0; i < 50; i++) {
+        let sparkle = document.createElement("div");
+        sparkle.className = "sparkle";
+        sparkle.style.left = Math.random() * window.innerWidth + "px";
+        sparkle.style.animationDuration = Math.random() * 5 + 3 + "s";
+        sparkle.style.width = sparkle.style.height =
+          Math.random() * 3 + 2 + "px";
+        document.body.appendChild(sparkle);
+      }
+
+      // Popup Functions
+      function showPopup(message) {
+        document.getElementById("popup-message").innerText = message;
+        document.getElementById("popup").style.display = "flex";
+      }
+
+      function closePopup() {
+        document.getElementById("popup").style.display = "none";
+      }
+
+      // Count-up timer since 6:32 today
+      function startCountUp() {
+        const now = new Date();
+        const start = new Date(
+          now.getFullYear(),
+          now.getMonth(),
+          now.getDate(),
+          6,
+          32,
+          0
+        ); // today at 6:32
+
+        function updateTimer() {
+          const current = new Date();
+          let diff = Math.max(0, current - start); // milliseconds since 6:32
+
+          let hours = Math.floor(diff / (1000 * 60 * 60));
+          let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+          let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+          document.getElementById("timer").textContent =
+            String(hours).padStart(2, "0") +
+            ":" +
+            String(minutes).padStart(2, "0") +
+            ":" +
+            String(seconds).padStart(2, "0");
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer(); // run immediately
+      }
+
+      startCountUp();
+    </script>
+  </body>
+</html>
